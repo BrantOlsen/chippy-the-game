@@ -11,6 +11,8 @@ function LeaderboardViewModel() {
     var self = this;
     self.scores = ko.observableArray();
     self.leaderboard = ko.observable(false);
+    self.level = new Array();
+    self.level.push(ko.observable(false));
 
     // Operations
     self.addScore = function(name, score) {
@@ -43,7 +45,21 @@ function LeaderboardViewModel() {
 
 LeaderboardViewModel.prototype.showLeaderboard = function()
 {
+  // Hide all level tabs.
+  this.showLevel(-1);
+  
   this.leaderboard(true);
+
 }
+
+LeaderboardViewModel.prototype.showLevel = function(level)
+{
+  this.leaderboard(false);
+  for (var index = 0; index < this.level.length; ++index)
+  {
+    this.level[index](index == level);
+  }
+}
+
 
 ko.applyBindings(new LeaderboardViewModel());

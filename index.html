@@ -6,8 +6,15 @@
 <body>
   <!-- This is a *view* - HTML markup that defines the appearance of your UI -->
   <div id="button_row">
-    <button data-bind="click: showLeaderboard">Leaderboard</button>
-    
+    <button data-bind="click: showLevel.bind($data, 0)">Level 1</button>
+    <button disabled>Locked</button>
+    <button data-bind="click: showLeaderboard">Leaderboard</button>  
+  </div>
+  
+  <div id="level1" data-bind="visible: level[0]">
+    <canvas style="background: blue;">
+      
+    </canvas>
   </div>
   
   <div id ="leaderboard" data-bind="visible: leaderboard">
