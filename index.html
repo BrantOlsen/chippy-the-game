@@ -1,41 +1,43 @@
 <html>
-<head>
-<script src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-2.0.0.js"></script>
-</head>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-2.0.0.js"></script>
+  </head>
 
-<body>
-  <!-- This is a *view* - HTML markup that defines the appearance of your UI -->
-  <div id="button_row">
-    <button data-bind="click: showLevel.bind($data, 0)">Level 1</button>
-    <button disabled>Locked</button>
-    <button data-bind="click: showLeaderboard">Leaderboard</button>  
-  </div>
-  
-  <div id="level1" data-bind="visible: level[0]">
-    <canvas style="background: blue;">
-      
-    </canvas>
-  </div>
-  
-  <div id ="leaderboard" data-bind="visible: leaderboard">
-    <table>
-      <thead><tr>
-          <th>Name</th><th>Score</th><th>Date</th><th></th>
-        </tr></thead>
-      <tbody data-bind="foreach: scores">
-        <tr>
-          <td data-bind="text: name"></td>
-          <td data-bind="text: score"></td>
-          <td data-bind="text: date"></td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <button data-bind="click: addScore.bind($data, 'Brant', 12000)">Add score</button>
-  </div>
-      
-  <!-- Must be after the view is defined. -->
-  <script src="js/chippy.js"></script>
-  
-</body>
+  <body>
+    <!-- This is a *view* - HTML markup that defines the appearance of your UI -->
+    <div id="button_row">
+      <button data-bind="click: showLevel.bind($data, 0)">Level 1</button>
+      <button disabled>Locked</button>
+      <button data-bind="click: showLeaderboard">Leaderboard</button>  
+    </div>
+
+    <div id="level1" data-bind="fadeVisible: level[0]">
+      <canvas style="background: blue;">
+
+      </canvas>
+    </div>
+
+    <div id ="leaderboard" data-bind="fadeVisible: leaderboard">
+      <table>
+        <thead><tr>
+            <th>Name</th><th>Score</th><th>Date</th><th></th>
+          </tr></thead>
+        <tbody data-bind="foreach: scores">
+          <tr>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: score"></td>
+            <td data-bind="text: date"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button data-bind="click: addScore.bind($data, 'Brant', 12000)">Add score</button>
+    </div>
+
+    <!-- Must be after the view is defined. -->
+    <script src="js/chippy.js"></script>
+
+  </body>
 </html>
