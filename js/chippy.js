@@ -1,3 +1,11 @@
+function ChippyGame($elem) {
+  var self = this;
+  
+  self.context = $elem[0].getContext("2d");
+
+  self.context.fillRect(0, 0, self.context.canvas.width, self.context.canvas.height);
+}
+
 // Class to represent a row in the seat reservations grid
 function Score(name, score, date) {
   var self = this;
@@ -7,13 +15,14 @@ function Score(name, score, date) {
 }
 
 // Overall viewmodel for this screen, along with initial state
-function LeaderboardViewModel() {
+function MainViewModel() {
   var self = this;
   
   self.scores = ko.observableArray();
   self.leaderboard = ko.observable(false);
   self.level = new Array();
   self.level.push(ko.observable(false));
+  self.chippyGame = new ChippyGame($("#level1"));
 
   // Operations
   self.addScore = function(name, score) {
@@ -44,7 +53,7 @@ function LeaderboardViewModel() {
   self.load();
 }
 
-LeaderboardViewModel.prototype.showLeaderboard = function()
+MainViewModel.prototype.showLeaderboard = function()
 {
   // Hide all level tabs.
   this.showLevel(-1);
@@ -53,7 +62,7 @@ LeaderboardViewModel.prototype.showLeaderboard = function()
 
 }
 
-LeaderboardViewModel.prototype.showLevel = function(level)
+MainViewModel.prototype.showLevel = function(level)
 {
   this.leaderboard(false);
   for (var index = 0; index < this.level.length; ++index)
@@ -77,4 +86,4 @@ ko.bindingHandlers.fadeVisible = {
     }
 };
 
-ko.applyBindings(new LeaderboardViewModel());
+ko.applyBindings(new MainViewModel());
